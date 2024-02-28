@@ -3,13 +3,14 @@ import { food_img_url } from "../utils/constants";
 import { SlArrowUp, SlArrowDown } from "react-icons/sl";
 
 const RestaurantCategory = (props) => {
-  const { resCategory } = props;
+  const {showItem,setIndex, resCategory } = props;
   const { itemCards, title } = resCategory;
 
-  const [showItem, setShowItem] = useState(false);
-  const showItems = () => {
-    setShowItem(!showItem);
-  };
+  const handleClick = () => {
+    setIndex();
+  }
+
+ 
   return (
     <div className="gap-2 p-3 w-1/2 m-2 items-center">
       <div className="flex justify-between">
@@ -17,9 +18,9 @@ const RestaurantCategory = (props) => {
           {title}({itemCards.length})
         </h1>
         {showItem ? (
-          <SlArrowDown onClick={showItems} />
+          <SlArrowDown onClick={handleClick} />
         ) : (
-          <SlArrowUp onClick={showItems} />
+          <SlArrowUp onClick={handleClick} />
         )}
       </div>
 
@@ -29,14 +30,14 @@ const RestaurantCategory = (props) => {
             item?.card?.info;
           return (
             <div className="flex">
-            <div className="flex justify-between my-2 ">
+            <div className="flex justify-between my-2 bg-gray-100 p-2 ">
               <div className="w-3/4">
                 <label>{name}</label>
                 <div>₹{price ? price / 100 : defaultPrice / 100}</div>
                 <p className="my-2">{description}</p>
               </div>
               <div className="w-1/4">
-                {/* <div className="absolute text-green-200 p-2 ">ADD</div> */}
+                {/* <div className="absolute text-green-300 p-2 ">ADD</div> */}
                 <img src={food_img_url + imageId} alt="no image"></img>
               </div>
               

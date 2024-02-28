@@ -9,14 +9,22 @@ const RestaurantDetail = () => {
   let { resId } = useParams();
   const menu = useMenuDetails(resId);
 
+  const [itemIndex, setItemIndex] = useState(-1);
+
   if (!menu) {
     return <Shimmer />;
   }
   return (
     <div>
-      <hr className="m-2"/>
+      <hr className="m-2" />
       {menu?.map((item, index) => {
-        return <RestaurantCategory resCategory={item?.card?.card} />;
+        return (
+          <RestaurantCategory
+            showItem={index === itemIndex ? true : false}
+            resCategory={item?.card?.card}
+            setIndex = {() => setItemIndex(index)}
+          />
+        );
       })}
     </div>
   );
